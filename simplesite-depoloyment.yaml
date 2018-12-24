@@ -18,7 +18,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: registry.ng.bluemix.net/mywpnamespace/my-apache2:v0.3
+      - image: registry.ng.bluemix.net/mywpnamespace/simplesite:v0.1
         name: simplesite
         ports:
         - containerPort: 80
