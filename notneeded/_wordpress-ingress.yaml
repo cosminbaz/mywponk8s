@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  annotations:
+    ingress.bluemix.net/rewrite-target: /
+    #ingress.bluemix.net/redirect-to-https: "true"
+    #ingress.bluemix.net/ssl-services: "ssl-service=devappcenterservice;ssl-service=mfpconsoleservice"
+    ingress.bluemix.net/client-max-body-size: "size=10M"
+spec:
+  tls:
+  - hosts:
+    - scrfmpmondevk8scluster.mon01.containers.appdomain.cloud
+    secretName: scrfmpmondevk8scluster
+  rules:
+  - host: scrfmpmondevk8scluster.mon01.containers.appdomain.cloud
+    http:
+      paths:
+      - path: /appcenterconsole
+        backend:
+          serviceName: devappcenterservice
+          servicePort: 9442
+      - path: /applicationcenter
+        backend:
+          serviceName: devappcenterservice
+          servicePort: 9442

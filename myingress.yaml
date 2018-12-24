@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  annotations:
+    ingress.bluemix.net/rewrite-target: /
+    ingress.bluemix.net/redirect-to-https: "true"
+    #ingress.bluemix.net/ssl-services: "ssl-service=devappcenterservice;ssl-service=mfpconsoleservice"
+    ingress.bluemix.net/client-max-body-size: "size=10M"
+    ingress.bluemix.net/ingress.class: nginx
+spec:
+  tls:
+  - hosts:
+    #- mywpk8scluster1.us-south.containers.appdomain.cloud  
+    - www.ibm.baz.ro
+    secretName: mywptlssecret
+  rules:
+  #- host: mywpk8scluster1.us-south.containers.appdomain.cloud
+  - host: www.ibm.baz.ro
+    http:
+      paths:
+      - path: /info
+        backend:
+          serviceName: simplesite-service
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: wordpress-service
+          servicePort: 80
