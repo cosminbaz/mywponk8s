@@ -63,5 +63,5 @@ kubectl apply -f myingress.yaml
 ```
 
 ## Check how the Ingress redirects http to https and the 2 different pods based on URL path
-http://www.ibm.baz.ro
+http://www.ibm.baz.ro <br />
 http://www.ibm.baz.ro/pod2
