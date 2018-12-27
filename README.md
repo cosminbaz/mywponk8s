@@ -17,11 +17,6 @@ docker image ls
 docker push registry.ng.bluemix.net/mywpnamespace/simplesite:v0.1
 ```
 
-## re/Deploy simplesite deployment
-```
-kubectl apply -f simplesite-depoloyment.yaml
-```
-
 ## re/Create mysql password secret
 ```
 kubectl create secret generic mysql-pass --from-literal=password=mypass###
@@ -29,7 +24,18 @@ kubectl create secret generic mysql-pass --from-literal=password=mypass###
 
 ## re/Deploy mysql deployment and service (one yaml)
 ```
-kubectl apply -f mysql-deployment.yaml
+kubectl apply -f wordpress-mysql-service-and-deployment.yaml
+```
+
+## re/Deploy wordpress-deployment and the pvc included claim
+```
+kubectl apply -f wordpress-deployment.yaml
+```
+
+## re/Deploy simplesite deployment
+Check that the new built image tag matches the tag in the yaml file
+```
+kubectl apply -f simplesite-depoloyment.yaml
 ```
 
 ## re/Deploy services
@@ -38,7 +44,7 @@ kubectl apply -f simplesite-service.yaml
 kubectl apply -f wordpress-service.yaml
 ```
 
-## Generate certificates
+## (Optional, do only the first time) Generate certificates
 ### Use certbot on a pod (https://certbot.eff.org/lets-encrypt/debianjessie-apache) to get certificates
 ```
 wget https://dl.eff.org/certbot-auto
@@ -57,6 +63,5 @@ kubectl apply -f myingress.yaml
 ```
 
 ## Check how the Ingress redirects http to https and the 2 different pods based on URL path
-<p>http://www.ibm.baz.ro
-<p>http://www.ibm.baz.ro/info
-
+http://www.ibm.baz.ro
+http://www.ibm.baz.ro/pod2
