@@ -5,6 +5,7 @@ metadata:
   annotations:
     ingress.bluemix.net/rewrite-target: /
     ingress.bluemix.net/redirect-to-https: "true"
+    #ingress.bluemix.net/ssl-services: "ssl-service=devappcenterservice;ssl-service=mfpconsoleservice"
     ingress.bluemix.net/client-max-body-size: "size=10M"
     ingress.bluemix.net/ingress.class: nginx
 spec:
