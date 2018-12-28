@@ -38,3 +38,11 @@ spec:
         backend:
           serviceName: wordpress-service
           servicePort: 80
+  - host: cert.ibm.baz.ro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: cert-service
+          servicePort: 80
+
