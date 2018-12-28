@@ -77,7 +77,9 @@ Any domain or subdomain can be used, the only important configuration is to poin
 - configure ingress to point to the new domain (we go http only for now)
 - the next 2 steps of the procedure will be automated at some point (this applies to Let's Encrypt Free certs only):
 	- create a certbot pod (webserver + certbot script) that will listen to port 80, a corespondend service and a record in the Ingress that will respond to the new domain requests (see myingress.yaml), comment out redirect-to-https in the ingress (the pod only listens to 80 not 443)<br />
+
 	(pull an image from here: ```docker pull cgbaz/certbot:v1```)<br />
+
 	- generate new certificates and extract them in pem format
 - having the new pem files (key & cert) certificates generate new secret:
 ```
