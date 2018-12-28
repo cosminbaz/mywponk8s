@@ -10,12 +10,24 @@ metadata:
 spec:
   tls:
   - hosts:
-    #- mywpk8scluster1.us-south.containers.appdomain.cloud  
     - www.ibm.baz.ro
     secretName: mywptlssecret
+  - hosts:
+    - mywpk8scluster1.us-south.containers.appdomain.cloud
+    secretName: mywpk8scluster1 
   rules:
-  #- host: mywpk8scluster1.us-south.containers.appdomain.cloud
   - host: www.ibm.baz.ro
+    http:
+      paths:
+      - path: /pod2
+        backend:
+          serviceName: simplesite-service
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: wordpress-service
+          servicePort: 80
+  - host: mywpk8scluster1.us-south.containers.appdomain.cloud
     http:
       paths:
       - path: /pod2
